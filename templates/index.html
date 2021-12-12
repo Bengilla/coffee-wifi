@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Cafe & Cafe</title>
+</head>
+<body>
+   <h1>Welcome to the Cafe & Wifi</h1>
+
+   <!-- # List -->
+    {% for i in all_cafe %}
+   <div class="container">
+       <div class="image">
+           <img src={{ i["img_url"] }} class="img">
+        </div>
+        <div class="info">
+            <h2 class="name">{{ i["name"] }}</h2>
+            <p>Location: {{ i["location"] }}</p>
+            {% if i["has_sockets"] == 1 %}
+                <p>Power: Yes</p>
+            {% else %}
+                <p>Power: No</p>
+            {% endif %}
+            {% if i["has_toilet"] == 1 %}
+                <p>Toilet: Yes</p>
+            {% else %}
+                <p>Toilet: No</p>
+            {% endif %}
+            {% if i["has_wifi"] == 1 %}
+                <p>Wifi: Yes</p>
+            {% else %}
+                <p>Wifi: No</p>
+            {% endif %}
+            {% if i["can_take_calls"] == 1 %}
+                <p>Take Calls: Yes</p>
+            {% else %}
+                <p>Take Calls: No</p>
+            {% endif %}
+            <p>Seats: {{ i["seats"] }}</p>
+            <p>Coffee Price: {{ i["coffee_price"] }}</p><br>
+            <a href={{ i["map_url"] }} target="blank">Google Map of {{ i["name"] }}</a>
+        </div>
+   </div>
+   <hr>
+    {% endfor %}
+   
+</body>
+</html>
